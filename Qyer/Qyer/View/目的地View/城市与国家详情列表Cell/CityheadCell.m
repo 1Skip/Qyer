@@ -13,8 +13,7 @@
 -(UIImageView *)image
 {
     if (!_image) {
-        _image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"CC_Guide_10x24_"]];
-//        [_image2 setImageURL:@"http://pic.qyer.com/public/mobileapp/startbanner/2016/04/12/14604562592918".wx_URL];
+        _image = [UIImageView new];
         [self.contentView addSubview:_image];
         [_image mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(0);
@@ -57,7 +56,7 @@
 -(UIImageView *)image2
 {
     if (!_image2) {
-        _image2 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"arrow_gray"]];
+        _image2 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"RightArrow_Gray_5x12_"]];
         [self.contentView addSubview:_image2];
         [_image2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(0);

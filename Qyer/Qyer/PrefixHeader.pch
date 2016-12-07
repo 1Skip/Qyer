@@ -30,6 +30,8 @@
 #import <BlocksKit+UIKit.h>
 #import <iCarousel.h>
 
+#pragma mark - 工厂
+#import "ZXFactory.h"
 
 
 #pragma mark - 各个页面数据Medel

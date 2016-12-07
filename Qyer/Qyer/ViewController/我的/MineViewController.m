@@ -12,14 +12,35 @@
 
 #define khigh 220
 //@property(nonatomic)UIView* image;
+@property (nonatomic) NSArray* photoArr;
+
+@property (nonatomic) NSArray* titleArr;
 
 @property(nonatomic)UIView* image;
 
 @end
 
 @implementation MineViewController
-
-
+-(NSArray *)photoArr
+{
+    if (!_photoArr) {
+        NSArray * arr = @[@"myOrder_icon_19x21_",@"myOrderCollecte_icon",@"mycoupon_icon"];
+        NSArray* arr2 = @[@"mywantto_icon",@"MyFootPrint_icon",@"MyComment_icon"];
+        NSArray* arr3 = @[@"MyPosts_icon",@"MyQuestionsAnswers_icon",@"MyGoWith_icon"];
+        _photoArr = @[arr,arr2,arr3];
+    }
+    return _photoArr;
+}
+-(NSArray *)titleArr
+{
+    if (!_titleArr) {
+        NSArray* arr = @[@"我的订单",@"我收藏的折扣",@"我的优惠券"];
+        NSArray* arr2 = @[@"我收藏的目的地",@"我的足迹",@"等我点评的目的地"];
+        NSArray* arr3 = @[@"我发布的帖子",@"我的回答",@"我的结伴"];
+        _titleArr = @[arr,arr2,arr3];
+    }
+    return _titleArr;
+}
 //-(void)viewWillAppear:(BOOL)animated
 //{
 //
@@ -30,36 +51,55 @@
 //}
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.tableView.contentInset = UIEdgeInsetsMake(khigh  , 0, 0, 0);
-    self.navigationItem.title = @"个人中心";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"QYNavSettingGreen_40x40_"] style:UIBarButtonItemStyleDone target:nil action:nil];
+    [self Setnavigationbar];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"reuseIdentifier"];
     self.image = [[NSBundle mainBundle]loadNibNamed:@"Headerview" owner:nil options:nil].firstObject;
     [self.tableView addSubview:self.image];
-    self.image.frame = CGRectMake(0, -khigh , WIDTH, khigh);
-
-    self.image.autoresizesSubviews = YES;
+    self.image.frame = CGRectMake(0, -khigh , WIDTH, khigh + 64);
+    [self addWoolglass];
+    self.tableView.contentInset = UIEdgeInsetsMake(khigh, 0, 0, 0);
+    self.tableView.separatorInset = UIEdgeInsetsZero;
     
-    UIBlurEffect* effe = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+}
+-(void)addWoolglass
+{
+    UIBlurEffect* effe = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     
     UIVisualEffectView *effect = [[UIVisualEffectView alloc]initWithEffect:effe];
     
-    effect.alpha = 0.5;
+    effect.alpha = 0.6;
     
     [self.image addSubview:effect];
     
     [effect mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(0);
     }];
+
+}
+//设置导航栏
+-(void)Setnavigationbar
+{
+    //设置导航栏成不透明
+    self.navigationController.navigationBar.translucent = NO;
+    self.tableView.contentInset = UIEdgeInsetsMake(khigh, 0, 0, 0);
+    self.navigationItem.title = @"个人中心";
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    //修改 title 字体大小以及颜色
+    self.navigationController.navigationBar.titleTextAttributes = @{UITextAttributeTextColor: [UIColor whiteColor],UITextAttributeFont : [UIFont boldSystemFontOfSize:17]};
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Msg_Alert"] style:UIBarButtonItemStyleDone target:nil action:nil];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"QYNavSettingGreen_40x40_"] style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGFloat off_y = scrollView.contentOffset.y;
 
-    if ( -off_y   > khigh   ) {
+    if ( -off_y   >  khigh   ) {
         CGRect fram = self.image.frame;
+        
         NSLog(@"原有%f",fram.origin.y);
+        
         fram.origin.y = off_y;
+        
         fram.size.height = -off_y;
         
         self.image.frame = fram;
@@ -78,30 +118,49 @@
 {
     UIView * view = [UIView new];
     if (section == 0) {
-      
-        view.backgroundColor = [UIColor yellowColor];
+        view.backgroundColor = [UIColor whiteColor];
+        NSArray* arr = @[@"MyPosts_icon",@"downloadAdvice_icon",@"myTravel_icon"];
+        UIButton* btn1 = [ZXFactory addSystemBtnWithName:arr[0]];
+        UIButton* btn2 = [ZXFactory addSystemBtnWithName:arr[1]];
+        UIButton* btn3 = [ZXFactory addSystemBtnWithName:arr[2]];
+        [view addSubview:btn1];
+        [view addSubview:btn2];
+        [view addSubview:btn3];
+        [btn1 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(50);
+            make.top.equalTo(25);
+        }];
+        [btn2 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(0);
+            make.top.equalTo(25);
+        }];
+        [btn3 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(-50);
+            make.top.equalTo(25);
+        }];
+   
         return view;
     }
-    if (section == 1) {
-        view.backgroundColor = [UIColor greenColor];
-        return view;
-    }
-    view.backgroundColor = [UIColor grayColor];
+    view.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.5];
     
     return view;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 60;
+        CGFloat higt = kHight * 160 / 1135;
+        return higt;
     }
-//    if (section == 1) {
-//        return <#expression#>
-//    }
-    return 10;
+    CGFloat higt = kHight * 22 / 1135;
+    return higt;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat higt  =  kHight * 100 / 1135;
+    return higt;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 8;
+    return self.photoArr.count + 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -113,11 +172,11 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    UITableViewCell* cell = [UITableViewCell new];
-    cell.textLabel.text = [NSString stringWithFormat:@"我是第%ld分区，第几%ld行",indexPath.section,indexPath.row];
-    // Configure the cell...
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
+    cell.textLabel.text = self.titleArr[indexPath.section - 1][indexPath.row];
+    cell.imageView.image = [UIImage imageNamed:self.photoArr[indexPath.section - 1][indexPath.row]];
+    UIImageView* image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"QYRightArrowGreen_12x13_"]];
+    cell.accessoryView = image;
     return cell;
 }
 

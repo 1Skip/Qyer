@@ -89,9 +89,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //修改所有item的选中状态时的默认文字颜色
-    
-    
-    // Do any additional setup after loading the view.
     UINavigationController *shoppingNavi = [[UINavigationController alloc] initWithRootViewController:self.shoppingVC];
     UINavigationController *BournNavi = [[UINavigationController alloc] initWithRootViewController:self.bournVC];
     UINavigationController *CommunityNavi = [[UINavigationController alloc] initWithRootViewController:self.communityVC];
@@ -104,16 +101,13 @@
     //[self.tabBar setBarTintColor: [UIColor clearColor]];
     [self.tabBar setTintColor:[UIColor whiteColor]];
     [self.tabBar setBackgroundColor:[UIColor whiteColor]];
-    //self.tabBarController.tabBar.tintColor = [UIColor whiteColor];
-    //self.tabBarItem.image = [UIImage imageNamed:@""];
-    
-    
-    // 遵守 tabbar 的代理协议
+     // 设置全局导航栏控制器背景颜色
+    [[UINavigationBar appearance] setBarTintColor: bColor;
+ // 遵守 tabbar 的代理协议
     self.delegate = self;
     
     // 添加选中的背景
     self.itemSelectedBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TabBar_Background_Highlight_150x100_"]];
-    
     self.itemSelectedBackground.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width / 5, 48);
     [self.tabBar insertSubview:self.itemSelectedBackground atIndex:0];
     self.tabBar.opaque = YES;

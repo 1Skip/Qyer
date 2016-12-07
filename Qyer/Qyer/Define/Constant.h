@@ -10,7 +10,8 @@
 #ifndef Constant_h
 
 #define Constant_h
-
+// 经常用到的蓝色
+#define bColor  [UIColor colorWithRed:36 / 255.0 green:190 / 255.0 blue:123 / 255.0 alpha:1]]
 //  App界面的宽度
 #define kWidth (long)([UIScreen mainScreen].bounds.size.width)
 

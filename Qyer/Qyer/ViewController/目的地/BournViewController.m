@@ -39,7 +39,7 @@
 {
     if (!_bournView) {
           /**初始化并设置布局*/
-        _bournView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 100, [UIScreen mainScreen].bounds.size.height) style:UITableViewStylePlain];
+        _bournView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, 100, [UIScreen mainScreen].bounds.size.height) style:UITableViewStylePlain];
         //去掉表尾
         self.bournView.tableFooterView = [UIView new];
         // 颜色
@@ -65,7 +65,7 @@
         // 初始化并设置布局
         UICollectionViewFlowLayout * layou = [[UICollectionViewFlowLayout alloc]init];
          /**初始化并设置布局*/
-        _cityVC = [[UICollectionView alloc]initWithFrame:CGRectMake(self.bournView.width, 64, WIDTH - self.bournView.width,HEIGHT)collectionViewLayout:layou];
+        _cityVC = [[UICollectionView alloc]initWithFrame:CGRectMake(self.bournView.width, 64, WIDTH - self.bournView.width,HEIGHT - 64 - 44)collectionViewLayout:layou];
         _cityVC.backgroundColor = [UIColor whiteColor];
         //注册单元视图和头部视图
         [self.cityVC registerClass:[cityVScountryCell class] forCellWithReuseIdentifier:@"cityVScountryCell"];
@@ -81,12 +81,20 @@
     }
     return _cityVC;
 }
-
+// 改变状态栏颜色
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+//  图层加载
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.view addSubview:[ZXFactory Loadingbackground]];
+    
     [self.view addSubview:self.bournView];
     
+    [self addSearchbar];
 
     [NetManager getBournModelCompletionHandeler:^(bournModel *model, NSError *error) {
         if (!error) {
@@ -113,13 +121,29 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(void)addSearchbar
+{
+    UITextField* Search = [UITextField new];
+    Search.frame = CGRectMake(0, 0, 350, 30);
+    UIImageView* image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"new_search_icon"]];
+    Search.tintColor = [UIColor whiteColor];
+    Search.leftViewMode = UITextFieldViewModeAlways;
+    Search.leftView = image;
+    Search.text = @"搜索目的地";
+    Search.textColor = [UIColor whiteColor];
+    [Search setFont:[UIFont systemFontOfSize:12]];
+    Search.leftView.frame = CGRectMake(150, 20, kWidth, kHight);
+    Search.backgroundColor = [UIColor colorWithRed:36 / 255.0 green:190 / 255.0 blue:123 / 255.0 alpha:1];
+    Search.textAlignment = NSTextAlignmentCenter;
+    Search.layer.cornerRadius = 15;
+    Search.clipsToBounds = YES;
+    [Search bk_shouldEndEditingBlock];
+    self.navigationItem.titleView = Search;
+}
 
 #pragma mark - Table view data source
 
-
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
     return 1;
 }
 
@@ -297,12 +321,14 @@
     // 创建 VC
     BournCityVC* city = [BournCityVC new];
     //   传值.
-    city.idField =
-    self.cityVScountry.citylist[indexPath.row].idField;
-    //   跳转
-    [self presentViewController:city animated:YES completion:^{
-        
-    }];
+    city.idField =self.cityVScountry.citylist[indexPath.row].idField;
+    // 先隐藏
+    self.tabBarController.tabBar.hidden = YES;
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:city animated:YES];
+    // 改变
+    self.hidesBottomBarWhenPushed = NO;
+
 }
 
 

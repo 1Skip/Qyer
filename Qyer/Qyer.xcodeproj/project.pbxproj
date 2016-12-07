@@ -33,6 +33,7 @@
 		5508C8BB1DE14E6800594AB5 /* countryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508C8BA1DE14E6800594AB5 /* countryCell.m */; };
 		554C20E11DEA9D3700A8271E /* Headerview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 554C20E01DEA9D3700A8271E /* Headerview.xib */; };
 		554C20E41DEA9E9500A8271E /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 554C20E31DEA9E9500A8271E /* HeaderView.m */; };
+		555318171DF744CB000F53BE /* ZXFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 555318161DF744CB000F53BE /* ZXFactory.m */; };
 		55FC55BC1DE8634E005B66FF /* TwoHeaddownCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FC55BB1DE8634E005B66FF /* TwoHeaddownCell.m */; };
 		55FC55BF1DE89AD5005B66FF /* ThreeHeaddownCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FC55BE1DE89AD5005B66FF /* ThreeHeaddownCell.m */; };
 		55FC55C21DE8BD7C005B66FF /* ThreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FC55C11DE8BD7C005B66FF /* ThreeCell.m */; };
@@ -81,6 +82,8 @@
 		554C20E01DEA9D3700A8271E /* Headerview.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Headerview.xib; sourceTree = "<group>"; };
 		554C20E21DEA9E9500A8271E /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
 		554C20E31DEA9E9500A8271E /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
+		555318151DF744CB000F53BE /* ZXFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXFactory.h; sourceTree = "<group>"; };
+		555318161DF744CB000F53BE /* ZXFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXFactory.m; sourceTree = "<group>"; };
 		55FC55BA1DE8634E005B66FF /* TwoHeaddownCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoHeaddownCell.h; sourceTree = "<group>"; };
 		55FC55BB1DE8634E005B66FF /* TwoHeaddownCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoHeaddownCell.m; sourceTree = "<group>"; };
 		55FC55BD1DE89AD5005B66FF /* ThreeHeaddownCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreeHeaddownCell.h; sourceTree = "<group>"; };
@@ -307,6 +310,16 @@
 			path = "我的View";
 			sourceTree = "<group>";
 		};
+		555318141DF744CB000F53BE /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				555318151DF744CB000F53BE /* ZXFactory.h */,
+				555318161DF744CB000F53BE /* ZXFactory.m */,
+			);
+			name = Tools;
+			path = Resource/Tools;
+			sourceTree = "<group>";
+		};
 		854C20871DDC5B4B00F5D5F4 = {
 			isa = PBXGroup;
 			children = (
@@ -329,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				550040311DE967E800BC3DFF /* Define */,
+				555318141DF744CB000F53BE /* Tools */,
 				5500402A1DE967CE00BC3DFF /* Resource */,
 				F4A513651DDC60A3008AF2A1 /* Category */,
 				F4A513661DDC60A3008AF2A1 /* NetManager */,
@@ -729,6 +743,7 @@
 				F4A513761DDC60C2008AF2A1 /* UIView+HUD.m in Sources */,
 				55FC55BC1DE8634E005B66FF /* TwoHeaddownCell.m in Sources */,
 				55FC55C51DE8D729005B66FF /* HeadCell.m in Sources */,
+				555318171DF744CB000F53BE /* ZXFactory.m in Sources */,
 				F40505851DE48765005FCD15 /* RecommendCityCell.m in Sources */,
 				F4ADDC951DDF013600C13254 /* AllViewController.m in Sources */,
 				F4ADDC8F1DDF007000C13254 /* ShoppingViewController.m in Sources */,

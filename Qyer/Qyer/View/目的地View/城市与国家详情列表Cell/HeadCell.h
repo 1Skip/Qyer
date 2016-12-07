@@ -11,6 +11,7 @@
 #define higt HEIGHT * 467 / 1135
 
 @interface HeadCell : UICollectionViewCell
+
 @property(nonatomic ) UILabel* cnname;
 
 @property(nonatomic ) UILabel* enname;

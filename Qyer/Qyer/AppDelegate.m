@@ -18,24 +18,12 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
     _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [_window makeKeyAndVisible];
     _window.rootViewController = [AllViewController new];
-    
-    [NetManager getShoppingCompletionHandler:^(ShoppingModel *model, NSError *error) {
-        NSLog(@"");
-    }];
-    
-    [NetManager getRecommendContentModel:1 ompletionHandler:^(RecommendViewModel *model, NSError *error) {
-        NSLog(@"");
-    }];
-    
-    return YES;
-    
-
-    
+    return YES;   
 }
+
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {

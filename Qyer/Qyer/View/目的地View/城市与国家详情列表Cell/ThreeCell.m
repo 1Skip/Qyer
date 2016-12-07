@@ -18,7 +18,7 @@
         _icon.layer.cornerRadius = 2.5;
         _icon.clipsToBounds = YES;
         [_icon mas_makeConstraints:^(MASConstraintMaker *make) {
-//            CGFloat boot = HEIGHT * 140 / 1135;
+
             make.left.right.equalTo(0);
             make.top.equalTo(0);
             make.height.equalTo(_icon.mas_width);
