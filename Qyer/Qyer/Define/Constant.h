@@ -54,7 +54,29 @@
 #define kContent @"http://open.qyer.com/qyer/home/home_feed?client_id=qyer_ios&client_secret=cd254439208ab658ddf9&count=10&lat=22.6451641991634&lon=114.1987457779863&oauth_token=8e9d40965a20539beb6d8171e0ff9aeb&page=一定要帅&track_app_channel=App%2520Store&track_app_version=7.0.5&track_device_info=iPhone%25205s&track_deviceid=FDBE0B0B-FBBE-B527-56A9-00E955C14A7C&track_os=ios%252010.1.1&track_user_id=8556847&v=1"
 
 // 旅行商城页面的网络地址宏定义.
-#define kShoppingPath @"http://open.qyer.com/qyer/discount/zk/discount_index?client_id=qyer_ios&client_secret=cd254439208ab658ddf9&count=20&lat=22.64518681964929&lon=114.1987129509261&page=1&track_app_channel=App%2520Store&track_app_version=7.0.5&track_device_info=iPhone%25205&track_deviceid=30554DAE-A825-442E-95BE-82E8AEC35AD6&track_os=ios%25209.1&v=10"
+#define kShoppingPath @"http://open.qyer.com/qyer/discount/zk/discount_index?client_id=qyer_ios&client_secret=cd254439208ab658ddf9&count=10&lat=22.64900914567158&lon=114.1970402979792&page=1&track_app_channel=App%2520Store&track_app_version=7.1&track_device_info=iPhone%25205&track_deviceid=30554DAE-A825-442E-95BE-82E8AEC35AD6&track_os=ios%25209.1&v=1"
+
+// 旅行商城页面中好货栏目的跳转链接宏定义
+#define kShoppingGoodsPath @"http://m.qyer.com/z/deal/%@/?source=app&client_id=qyer_ios&track_app_version=7.1&track_deviceid=30554DAE-A825-442E-95BE-82E8AEC35AD6"
+
+// 旅行商城页面中特价广告的跳转链接宏定义
+#define kShoppingSpecialPricePath @"http://m.qyer.com/z/zt/weihuo&source=app2/"
+
+// 旅行商城页面中机票广告的跳转链接宏定义
+#define kShoppingFlyTicketPath @"http://m.qyer.com/place/flights/"
+
+// 旅行商城页面中签证广告的跳转链接宏定义
+#define kShoppingVisaPath @"http://m.qyer.com/place/seckill/"
+
+// 旅行商城页面中城市详情的导航条1跳转链接宏定义
+#define kShoppingBanner1Path @"http://m.qyer.com/z/zt/cjwx/?campaign=appzhekou&category=banner1-cjwx&source=app"
+
+// 旅行商城页面中城市详情的导航条2跳转链接宏定义
+#define kShoppingBanner2Path @"http://m.qyer.com/z/zt/taipeiguide/?campaign=appzhekou&category=banner2-taipeiguide&source=app"
+
+// 社区推荐页面的网络地址宏定义
+#define kCommunityPath @"http://open.qyer.com/qyer/community/hotbbs/index?client_id=qyer_ios&client_secret=cd254439208ab658ddf9&count=10&lat=22.64900914567158&lon=114.1970402979792&page=%ld&track_app_channel=App%2520Store&track_app_version=7.1&track_device_info=iPhone%25205&track_deviceid=30554DAE-A825-442E-95BE-82E8AEC35AD6&track_os=ios%25209.1&v=1"
+
 
 
 

@@ -22,9 +22,23 @@
 @property(nonatomic) NSMutableArray<ShoppingPlaceModel *> *place1;
 @property(nonatomic) NSMutableArray<ShoppingListModel *> *list2;
 @property(nonatomic) NSMutableArray<ShoppingPlaceModel *> *place2;
-
-//@property(nonatomic) NSMutableDictionary *idDic;
+@property(nonatomic) NSString *cityDetailIDStr0;
+@property(nonatomic) NSMutableArray *cityDetailIDList0;
+@property(nonatomic) NSString *cityDetailIDStr1;
+@property(nonatomic) NSMutableArray *cityDetailIDList1;
+@property(nonatomic) NSString *worldIDStr0;
+@property(nonatomic) NSMutableArray *worldIDList0;
+@property(nonatomic) NSString *worldIDStr1;
+@property(nonatomic) NSMutableArray *worldIDList1;
+@property(nonatomic) NSString *worldIDStr2;
+@property(nonatomic) NSMutableArray *worldIDList2;
 @property(nonatomic) NSString *idStr;
+@property(nonatomic) NSMutableArray *goodsIdList;
+@property(nonatomic) NSString *adverSpecialTicketStr;
+@property(nonatomic) NSString *adverFlyStr;
+@property(nonatomic) NSString *adverVisaStr;
+@property(nonatomic) NSString *banner1Str;
+@property(nonatomic) NSString *banner2Str;
 
 @end
 
@@ -34,6 +48,8 @@
     return [UIColor colorWithRed:242 / 255.0 green:242 / 255.0 blue:242 / 255.0 alpha:1];
 }
 
+
+# pragma -mark 所有变量的初始化
 -(NSMutableArray<ShoppingIconListModel *> *)iconList
 {
     if (!_iconList)
@@ -142,7 +158,152 @@
     return _idStr;
 }
 
+-(NSMutableArray *)goodsIdList
+{
+    if (!_goodsIdList)
+    {
+        _goodsIdList = [NSMutableArray new];
+    }
+    return _goodsIdList;
+}
 
+-(NSString *)cityDetailIDStr0
+{
+    if (!_cityDetailIDStr0)
+    {
+        _cityDetailIDStr0 = [NSString new];
+    }
+    return _cityDetailIDStr0;
+}
+
+-(NSString *)cityDetailIDStr1
+{
+    if (!_cityDetailIDStr1)
+    {
+        _cityDetailIDStr1 = [NSString new];
+    }
+    return _cityDetailIDStr1;
+}
+
+-(NSMutableArray *)cityDetailIDList0
+{
+    if (!_cityDetailIDList0)
+    {
+        _cityDetailIDList0 = [NSMutableArray new];
+    }
+    return _cityDetailIDList0;
+}
+
+-(NSMutableArray *)cityDetailIDList1
+{
+    if (!_cityDetailIDList1)
+    {
+        _cityDetailIDList1 = [NSMutableArray new];
+    }
+    return _cityDetailIDList1;
+}
+
+-(NSString *)worldIDStr0
+{
+    if (!_worldIDStr0)
+    {
+        _worldIDStr0 = [NSString new];
+    }
+    return _worldIDStr0;
+}
+
+-(NSString *)worldIDStr1
+{
+    if (!_worldIDStr1)
+    {
+        _worldIDStr1 = [NSString new];
+    }
+    return _worldIDStr1;
+}
+
+-(NSString *)worldIDStr2
+{
+    if (!_worldIDStr2)
+    {
+        _worldIDStr2 = [NSString new];
+    }
+    return _worldIDStr2;
+}
+
+-(NSMutableArray *)worldIDList0
+{
+    if (!_worldIDList0)
+    {
+        _worldIDList0 = [NSMutableArray new];
+    }
+    return _worldIDList0;
+}
+
+-(NSMutableArray *)worldIDList1
+{
+    if (!_worldIDList1)
+    {
+        _worldIDList1 = [NSMutableArray new];
+    }
+    return _worldIDList1;
+}
+
+-(NSMutableArray *)worldIDList2
+{
+    if (!_worldIDList2)
+    {
+        _worldIDList2 = [NSMutableArray new];
+    }
+    return _worldIDList2;
+}
+
+-(NSString *)adverSpecialTicketStr
+{
+    if (!_adverSpecialTicketStr)
+    {
+        _adverSpecialTicketStr = [NSString new];
+    }
+    return _adverSpecialTicketStr;
+}
+
+-(NSString *)adverFlyStr
+{
+    if (!_adverFlyStr)
+    {
+        _adverFlyStr = [NSString new];
+    }
+    return _adverFlyStr;
+}
+
+-(NSString *)adverVisaStr
+{
+    if (!_adverVisaStr)
+    {
+        _adverVisaStr = [NSString new];
+    }
+    return _adverVisaStr;
+}
+
+-(NSString *)banner1Str
+{
+    if (!_banner1Str)
+    {
+        _banner1Str = [NSString new];
+    }
+    return _banner1Str;
+}
+
+-(NSString *)banner2Str
+{
+    if (!_banner2Str)
+    {
+        _banner2Str = [NSString new];
+    }
+    return _banner2Str;
+}
+
+
+# pragma -mark 主程序
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView setBackgroundColor:[UIColor whiteColor]];
@@ -150,6 +311,9 @@
     [self.tableView registerClass:[WorldCell class] forCellReuseIdentifier:@"WorldCell"];
     [self.tableView registerClass:[DiscountTopicCell class] forCellReuseIdentifier:@"DiscountTopicCell"];
     [self.tableView registerClass:[HotGoodsCell class] forCellReuseIdentifier:@"HotGoodsCell"];
+    
+    // 去掉tableViewCell中的分割线
+    self.tableView.separatorStyle = NO;
     
     // 调用网络请求的方法，把所有所需的数据解析出来
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -175,6 +339,8 @@
     return 7;
 }
 
+
+# pragma -mark 每组有多少个元素
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger i = self.shoppingModel.data.market_topic.count;
@@ -259,7 +425,8 @@
     return 0;
 }
 
- 
+
+# pragma -mark 每组的 cell 显示样式
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // 获取广告的所有数据
@@ -276,30 +443,15 @@
                 cell = [[AdvertisementCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AdvertisementCell"];
             }
             
-            if (cell.leftBtn)
-            {
-                self.idStr = self.marketTopicList[0].url;
-                
-            }
-            else if (cell.rightUpBtn)
-            {
-                self.idStr = self.marketTopicList[1].url;
-                
-            }
-            else if (cell.rightDownBtn)
-            {
-                self.idStr = self.marketTopicList[2].url;
-                [cell.rightDownBtn addTarget:self action:@selector(sendAdverURLandWC:) forControlEvents:UIControlEventTouchUpInside];
-            }
-            
+
             [cell.leftBtn setBackgroundImageWithURL:self.marketTopicList[0].pic.wx_URL forState:UIControlStateNormal options:0];
-            
-            [cell.leftBtn addTarget:self action:@selector(sendAdverURLandWC:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.leftBtn addTarget:self action:@selector(leftBtn:) forControlEvents:UIControlEventTouchUpInside];
 
             [cell.rightUpBtn setBackgroundImageWithURL:self.marketTopicList[1].pic.wx_URL forState:UIControlStateNormal options:0];
-            [cell.rightUpBtn addTarget:self action:@selector(sendAdverURLandWC:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.rightUpBtn addTarget:self action:@selector(rightUpBtn:) forControlEvents:UIControlEventTouchUpInside];
             
             [cell.rightDownBtn setBackgroundImageWithURL:self.marketTopicList[2].pic.wx_URL forState:UIControlStateNormal options:0];
+            [cell.rightDownBtn addTarget:self action:@selector(rightDownBtn:) forControlEvents:UIControlEventTouchUpInside];
             
             
             [cell addSubview:cell.view];
@@ -317,11 +469,6 @@
         }
         
         
-        cell.cityTitle.text = @"欧洲美国";
-        UIImageView *usatIV = [[UIImageView alloc]initWithFrame:CGRectMake(30, -5, 360, 65)];
-        usatIV.image = [UIImage imageNamed:@"欧美其他_375x65_"];
-        
-        [cell.cityView addSubview:usatIV];
         
         
         [cell.cityBtn enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -332,6 +479,18 @@
             obj.text = self.place[idx].name;
         }];
         
+        cell.cityTitle.text = @"日韩";
+        
+        UIImageView *hkIV = [UIImageView new];
+        [cell.cityView addSubview:hkIV];
+        [hkIV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.equalTo(kWidth * (600.f / 639.f));
+            make.height.equalTo((120.f / 710.f) * (kHight * (718.f / 1132.f)));
+            make.left.equalTo(kWidth * (30.f / 639.f));
+            make.top.equalTo(-(30.f / 710.f) * (kHight * (718.f / 1132.f)));
+        }];
+        hkIV.image = [UIImage imageNamed:@"日本_375x65_"];
+        [cell.cityView addSubview:hkIV];
         
         
         [cell.cityPic1 setImageURL:self.list[0].photo.wx_URL];
@@ -345,7 +504,17 @@
         cell.sold2LB.text = self.list[1].sold;
         cell.price2LB.text = [self.list[1].price stringByAppendingString:@" 元起"];
         
-        //cell.moreContentBtn.titleLabel.text = [NSString stringWithFormat: @"查看港澳台专题 >"];
+        for (NSInteger i = 0; i < 2; i ++)
+        {
+            self.worldIDStr0 = self.list[i].ID;
+            [self.worldIDList0 addObject:self.worldIDStr0];
+        }
+        
+        cell.cityDetail01Btn.tag = 0;
+        [cell.cityDetail01Btn addTarget:self action:@selector(world0Btn:) forControlEvents:UIControlEventTouchUpInside];
+        
+        cell.cityDetail02Btn.tag = 1;
+        [cell.cityDetail02Btn addTarget:self action:@selector(world0Btn:) forControlEvents:UIControlEventTouchUpInside];
         
         [cell.moreContentBtn setTitle:[NSString stringWithFormat: @"查看欧洲美国专题 >"] forState:UIControlStateNormal];
         return cell;
@@ -365,7 +534,15 @@
             
             cell.cityTitle.text = @"东南亚";
             
-            UIImageView *eastIV = [[UIImageView alloc]initWithFrame:CGRectMake(25, -5, 360, 65)];
+            UIImageView *eastIV = [UIImageView new];
+            [cell.cityView addSubview:eastIV];
+            [eastIV mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.width.equalTo(kWidth * (600.f / 639.f));
+                make.height.equalTo((120.f / 710.f) * (kHight * (718.f / 1132.f)));
+                make.left.equalTo(kWidth * (20.f / 639.f));
+                make.top.equalTo(-(20.f / 710.f) * (kHight * (718.f / 1132.f)));
+            }];
+
             eastIV.image = [UIImage imageNamed:@"泰国_375x65_"];
             [cell.cityView addSubview:eastIV];
 
@@ -391,7 +568,17 @@
             cell.sold2LB.text = self.list1[1].sold;
             cell.price2LB.text = [self.list1[1].price stringByAppendingString:@" 元起"];
             
-            //cell.moreContentBtn.titleLabel.text = [NSString stringWithFormat: @"查看港澳台专题 >"];
+            for (NSInteger i = 0; i < 2; i ++)
+            {
+                self.worldIDStr1 = self.list1[i].ID;
+                [self.worldIDList1 addObject:self.worldIDStr1];
+            }
+            
+            cell.cityDetail01Btn.tag = 0;
+            [cell.cityDetail01Btn addTarget:self action:@selector(world1Btn:) forControlEvents:UIControlEventTouchUpInside];
+            
+            cell.cityDetail02Btn.tag = 1;
+            [cell.cityDetail02Btn addTarget:self action:@selector(world1Btn:) forControlEvents:UIControlEventTouchUpInside];
             
             [cell.moreContentBtn setTitle:[NSString stringWithFormat: @"查看港澳台专题 >"] forState:UIControlStateNormal];
             return cell;
@@ -407,11 +594,21 @@
             cell = [[WorldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WorldCell"];
         }
         
-        cell.cityTitle.text = @"港澳台";
         
-        UIImageView *hkIV = [[UIImageView alloc]initWithFrame:CGRectMake(25, -5, 360, 65)];
-        hkIV.image = [UIImage imageNamed:@"港澳_375x65_"];
-        [cell.cityView addSubview:hkIV];
+        cell.cityTitle.text = @"欧洲美国";
+        
+        UIImageView *usatIV = [UIImageView new];
+        [cell.cityView addSubview:usatIV];
+        [usatIV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.equalTo(kWidth * (600.f / 639.f));
+            make.height.equalTo((120.f / 710.f) * (kHight * (718.f / 1132.f)));
+            make.left.equalTo(kWidth * (10.f / 639.f));
+            make.top.equalTo(-(20.f / 710.f) * (kHight * (718.f / 1132.f)));
+        }];
+        usatIV.image = [UIImage imageNamed:@"欧美其他_375x65_"];
+        
+        [cell.cityView addSubview:usatIV];
+
         
         [cell.cityBtn enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [obj setBackgroundImageWithURL:self.place2[idx].photo.wx_URL forState:UIControlStateNormal options:NO];
@@ -434,7 +631,17 @@
         cell.sold2LB.text = self.list2[1].sold;
         cell.price2LB.text = [self.list2[1].price stringByAppendingString:@" 元起"];
         
-        //cell.moreContentBtn.titleLabel.text = [NSString stringWithFormat: @"查看港澳台专题 >"];
+        for (NSInteger i = 0; i < 2; i ++)
+        {
+            self.worldIDStr2 = self.list2[i].ID;
+            [self.worldIDList2 addObject:self.worldIDStr2];
+        }
+        
+        cell.cityDetail01Btn.tag = 0;
+        [cell.cityDetail01Btn addTarget:self action:@selector(world2Btn:) forControlEvents:UIControlEventTouchUpInside];
+        
+        cell.cityDetail02Btn.tag = 1;
+        [cell.cityDetail02Btn addTarget:self action:@selector(world2Btn:) forControlEvents:UIControlEventTouchUpInside];
         
         [cell.moreContentBtn setTitle:[NSString stringWithFormat: @"查看东南亚专题 >"] forState:UIControlStateNormal];
         return cell;
@@ -452,6 +659,7 @@
         cell.cityTitle.text = self.shoppingModel.data.discount_topic[0].topic.title;
         
         [cell.topIV setBackgroundImageWithURL:self.shoppingModel.data.discount_topic[0].topic.photo.wx_URL forState:UIControlStateNormal options:NO];
+        [cell.topIV addTarget:self action:@selector(topIV1:) forControlEvents:UIControlEventTouchUpInside];
         
         
         [cell.cityPic1 setImageURL:self.topicList[0].photo.wx_URL];
@@ -470,7 +678,21 @@
         cell.sold3LB.text = self.topicList[2].sold;
         cell.price3LB.text = [self.topicList[2].price stringByAppendingString:@" 元起"];
         
-        //cell.moreContentBtn.titleLabel.text = [NSString stringWithFormat: @"查看港澳台专题 >"];
+        for (NSInteger i = 0; i < 3; i ++)
+        {
+            self.cityDetailIDStr0 = self.topicList[i].ID;
+            [self.cityDetailIDList0 addObject:self.cityDetailIDStr0];
+        }
+        
+        cell.cityDetail01Btn.tag = 0;
+        [cell.cityDetail01Btn addTarget:self action:@selector(cityDetail0Btn:) forControlEvents:UIControlEventTouchUpInside];
+        
+        cell.cityDetail02Btn.tag = 1;
+        [cell.cityDetail02Btn addTarget:self action:@selector(cityDetail0Btn:) forControlEvents:UIControlEventTouchUpInside];
+        
+        cell.cityDetail03Btn.tag = 2;
+        [cell.cityDetail03Btn addTarget:self action:@selector(cityDetail0Btn:) forControlEvents:UIControlEventTouchUpInside];
+        
         
         [cell.moreContentBtn setTitle:[NSString stringWithFormat: @"查看完整专题 >"] forState:UIControlStateNormal];
         return cell;
@@ -489,14 +711,14 @@
         cell.cityTitle.text = self.shoppingModel.data.discount_topic[1].topic.title;
         
         [cell.topIV setBackgroundImageWithURL:self.shoppingModel.data.discount_topic[1].topic.photo.wx_URL forState:UIControlStateNormal options:NO];
+        [cell.topIV addTarget:self action:@selector(topIV2:) forControlEvents:UIControlEventTouchUpInside];
+        
 
         [cell.cityPic1 setImageURL:self.topicList1[0].photo.wx_URL];
         cell.title1LB.text = self.topicList1[0].title;
         cell.sold1LB.text = self.topicList1[0].sold;
         cell.price1LB.text = [self.topicList1[0].price stringByAppendingString:@" 元起"];
         self.idStr = self.topicList1[1].ID;
-        [cell.cityDetail02Btn addTarget:self action:@selector(sendURLandWC:) forControlEvents:UIControlEventTouchUpInside];
-        
         
         [cell.cityPic2 setImageURL:self.topicList1[1].photo.wx_URL];
         cell.title2LB.text = self.topicList1[1].title;
@@ -508,8 +730,21 @@
         cell.sold3LB.text = self.topicList1[2].sold;
         cell.price3LB.text = [self.topicList1[2].price stringByAppendingString:@" 元起"];
        
+  
+        for (NSInteger i = 0; i < 3; i ++)
+        {
+            self.cityDetailIDStr1 = self.topicList1[i].ID;
+            [self.cityDetailIDList1 addObject:self.cityDetailIDStr1];
+        }
         
-        //cell.moreContentBtn.titleLabel.text = [NSString stringWithFormat: @"查看港澳台专题 >"];
+        cell.cityDetail01Btn.tag = 0;
+        [cell.cityDetail01Btn addTarget:self action:@selector(cityDetail1Btn:) forControlEvents:UIControlEventTouchUpInside];
+        
+        cell.cityDetail02Btn.tag = 1;
+        [cell.cityDetail02Btn addTarget:self action:@selector(cityDetail1Btn:) forControlEvents:UIControlEventTouchUpInside];
+        
+        cell.cityDetail03Btn.tag = 2;
+        [cell.cityDetail03Btn addTarget:self action:@selector(cityDetail1Btn:) forControlEvents:UIControlEventTouchUpInside];
         
         [cell.moreContentBtn setTitle:[NSString stringWithFormat: @"查看完整专题 >"] forState:UIControlStateNormal];
         return cell;
@@ -532,16 +767,15 @@
         }];
         
         [cell.goodsBtn enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            switch (idx) {
-                case 0:
-                    self.idStr = self.hotGoodsList[0].ID;
-                    [obj addTarget:self action:@selector(sendURLandWC:) forControlEvents:UIControlEventTouchUpInside];
-                    break;
-
-                default:
-                    break;
-            }
+            obj.tag = idx;
+            self.idStr = self.hotGoodsList[idx].ID;
+            
+            [self.goodsIdList addObject:self.idStr];
+            
+            [obj addTarget:self action:@selector(goodsBtn:) forControlEvents:UIControlEventTouchUpInside];
         }];
+        
+        
 
         [cell.goodsPic enumerateObjectsUsingBlock:^(UIImageView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [obj setImageURL:self.hotGoodsList[idx].photo.wx_URL];
@@ -565,11 +799,14 @@
 
 }
 
+
+# pragma -mark 每行 cell 都在做什么
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+# pragma -mark 每个分组的高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.section)
@@ -578,19 +815,19 @@
             return (kHight * (216.f / 1132.f));
             break;
         case 1:
-            return (kHight * (630.f / 1132.f));
+            return (kHight * (660.f / 1132.f));
             break;
         case 2:
-            return (kHight * (630.f / 1132.f));
+            return (kHight * (660.f / 1132.f));
             break;
         case 3:
-            return (kHight * (630.f / 1132.f));
+            return (kHight * (660.f / 1132.f));
             break;
         case 4:
-            return (kHight * (988.f / 1132.f));
+            return (kHight * (960.f / 1132.f));
             break;
         case 5:
-            return (kHight * (988.f / 1132.f));
+            return (kHight * (960.f / 1132.f));
             break;
         case 6:
             return (kHight * (1250.f / 1132.f));
@@ -602,11 +839,7 @@
     return 20;
 }
 
-//-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-//{
-//    return nil;
-//}
-
+# pragma  -mark 每组的组头高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     switch (section)
@@ -624,6 +857,8 @@
     return 0;
 }
 
+
+# pragma -mark 每组的组尾高度
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     switch (section)
@@ -652,6 +887,8 @@
     return 0;
 }
 
+
+# pragma -mark 表头的设置
 // 获取表头的数据内容并显示.
 -(UIView *)setHeaderView
 {
@@ -698,21 +935,179 @@
     return nil;
 }
 
+
+# pragma -mark 各类 button 的点击事件
+
 // 封装该方法主要作用是用来跳转到下一个界面以及跳转时传递给下个界面的URL
--(void)sendURLandWC:(NSString *)urlStr
+-(IBAction)goodsBtn:(id)sender
 {
-    NSLog(@"我的传值是 = %@",self.idStr);
-    NSString *path = [NSString stringWithFormat:@"http:/m.qyer.com/z/deal/%@/",self.idStr];
-    shoppingWebPageController *wc = [[shoppingWebPageController alloc]initWithURL:path.wx_URL];
+    UIButton *goodsBtn = (UIButton *)sender;
     
+    
+    if (goodsBtn.tag == 0)
+    {
+        NSString *path = [NSString stringWithFormat:kShoppingGoodsPath,self.goodsIdList[0]];
+        shoppingWebPageController *wc = [[shoppingWebPageController alloc]initWithURL:path.wx_URL];
+        [self.navigationController pushViewController:wc animated:YES];
+    }
+    if (goodsBtn.tag == 1)
+    {
+        NSString *path = [NSString stringWithFormat:kShoppingGoodsPath,self.goodsIdList[1]];
+        shoppingWebPageController *wc = [[shoppingWebPageController alloc]initWithURL:path.wx_URL];
+        [self.navigationController pushViewController:wc animated:YES];
+    }
+    if (goodsBtn.tag == 2)
+    {
+        NSString *path = [NSString stringWithFormat:kShoppingGoodsPath,self.goodsIdList[2]];
+        shoppingWebPageController *wc = [[shoppingWebPageController alloc]initWithURL:path.wx_URL];
+        [self.navigationController pushViewController:wc animated:YES];
+    }
+    if (goodsBtn.tag == 3)
+    {
+        NSString *path = [NSString stringWithFormat:kShoppingGoodsPath,self.goodsIdList[3]];
+        shoppingWebPageController *wc = [[shoppingWebPageController alloc]initWithURL:path.wx_URL];
+        [self.navigationController pushViewController:wc animated:YES];
+    }
+    if (goodsBtn.tag == 4)
+    {
+        NSString *path = [NSString stringWithFormat:kShoppingGoodsPath,self.goodsIdList[4]];
+        shoppingWebPageController *wc = [[shoppingWebPageController alloc]initWithURL:path.wx_URL];
+        [self.navigationController pushViewController:wc animated:YES];
+    }
+    if (goodsBtn.tag == 5)
+    {
+        NSString *path = [NSString stringWithFormat:kShoppingGoodsPath,self.goodsIdList[5]];
+        shoppingWebPageController *wc = [[shoppingWebPageController alloc]initWithURL:path.wx_URL];
+        [self.navigationController pushViewController:wc animated:YES];
+    }
+
+}
+
+-(IBAction)cityDetail0Btn:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    if (button.tag == 0)
+    {
+        NSString *path = [NSString stringWithFormat:kShoppingGoodsPath,self.cityDetailIDList0[0]];
+        shoppingWebPageController *wc = [[shoppingWebPageController alloc]initWithURL:path.wx_URL];
+        [self.navigationController pushViewController:wc animated:YES];
+    }
+    if (button.tag == 1)
+    {
+        NSString *path = [NSString stringWithFormat:kShoppingGoodsPath,self.cityDetailIDList0[1]];
+        shoppingWebPageController *wc = [[shoppingWebPageController alloc]initWithURL:path.wx_URL];
+        [self.navigationController pushViewController:wc animated:YES];
+    }
+    if (button.tag == 2)
+    {
+        NSString *path = [NSString stringWithFormat:kShoppingGoodsPath,self.cityDetailIDList0[2]];
+        shoppingWebPageController *wc = [[shoppingWebPageController alloc]initWithURL:path.wx_URL];
+        [self.navigationController pushViewController:wc animated:YES];
+    }
+}
+
+-(IBAction)cityDetail1Btn:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    if (button.tag == 0)
+    {
+        NSString *path = [NSString stringWithFormat:kShoppingGoodsPath,self.cityDetailIDList1[0]];
+        shoppingWebPageController *wc = [[shoppingWebPageController alloc]initWithURL:path.wx_URL];
+        [self.navigationController pushViewController:wc animated:YES];
+    }
+    if (button.tag == 1)
+    {
+        NSString *path = [NSString stringWithFormat:kShoppingGoodsPath,self.cityDetailIDList1[1]];
+        shoppingWebPageController *wc = [[shoppingWebPageController alloc]initWithURL:path.wx_URL];
+        [self.navigationController pushViewController:wc animated:YES];
+    }
+    if (button.tag == 2)
+    {
+        NSString *path = [NSString stringWithFormat:kShoppingGoodsPath,self.cityDetailIDList1[2]];
+        shoppingWebPageController *wc = [[shoppingWebPageController alloc]initWithURL:path.wx_URL];
+        [self.navigationController pushViewController:wc animated:YES];
+    }
+}
+
+-(IBAction)world0Btn:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    if (button.tag == 0)
+    {
+        NSString *path = [NSString stringWithFormat:kShoppingGoodsPath,self.worldIDList0[0]];
+        shoppingWebPageController *wc = [[shoppingWebPageController alloc]initWithURL:path.wx_URL];
+        [self.navigationController pushViewController:wc animated:YES];
+    }
+    if (button.tag == 1)
+    {
+        NSString *path = [NSString stringWithFormat:kShoppingGoodsPath,self.worldIDList0[1]];
+        shoppingWebPageController *wc = [[shoppingWebPageController alloc]initWithURL:path.wx_URL];
+        [self.navigationController pushViewController:wc animated:YES];
+    }
+}
+
+-(IBAction)world1Btn:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    if (button.tag == 0)
+    {
+        NSString *path = [NSString stringWithFormat:kShoppingGoodsPath,self.worldIDList1[0]];
+        shoppingWebPageController *wc = [[shoppingWebPageController alloc]initWithURL:path.wx_URL];
+        [self.navigationController pushViewController:wc animated:YES];
+    }
+    if (button.tag == 1)
+    {
+        NSString *path = [NSString stringWithFormat:kShoppingGoodsPath,self.worldIDList1[1]];
+        shoppingWebPageController *wc = [[shoppingWebPageController alloc]initWithURL:path.wx_URL];
+        [self.navigationController pushViewController:wc animated:YES];
+    }
+}
+
+-(IBAction)world2Btn:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    if (button.tag == 0)
+    {
+        NSString *path = [NSString stringWithFormat:kShoppingGoodsPath,self.worldIDList2[0]];
+        shoppingWebPageController *wc = [[shoppingWebPageController alloc]initWithURL:path.wx_URL];
+        [self.navigationController pushViewController:wc animated:YES];
+    }
+    if (button.tag == 1)
+    {
+        NSString *path = [NSString stringWithFormat:kShoppingGoodsPath,self.worldIDList2[1]];
+        shoppingWebPageController *wc = [[shoppingWebPageController alloc]initWithURL:path.wx_URL];
+        [self.navigationController pushViewController:wc animated:YES];
+    }
+}
+
+-(IBAction)leftBtn:(id)sender
+{
+        shoppingWebPageController *wc = [[shoppingWebPageController alloc]initWithURL:kShoppingSpecialPricePath.wx_URL];
+        [self.navigationController pushViewController:wc animated:YES];
+}
+
+-(IBAction)rightUpBtn:(id)sender
+{
+    shoppingWebPageController *wc = [[shoppingWebPageController alloc]initWithURL:kShoppingVisaPath.wx_URL];
     [self.navigationController pushViewController:wc animated:YES];
 }
 
-// 封装该方法主要作用是用来跳转广告页面
--(void)sendAdverURLandWC:(NSString *)urlStr
+-(IBAction)rightDownBtn:(id)sender
 {
-    shoppingWebPageController *wc = [[shoppingWebPageController alloc]initWithURL:self.idStr.wx_URL];
-    
+    shoppingWebPageController *wc = [[shoppingWebPageController alloc]initWithURL:kShoppingFlyTicketPath.wx_URL];
     [self.navigationController pushViewController:wc animated:YES];
 }
+
+-(IBAction)topIV1:(id)sender
+{
+    shoppingWebPageController *wc = [[shoppingWebPageController alloc]initWithURL:kShoppingBanner1Path.wx_URL];
+    [self.navigationController pushViewController:wc animated:YES];
+}
+
+-(IBAction)topIV2:(id)sender
+{
+    shoppingWebPageController *wc = [[shoppingWebPageController alloc]initWithURL:kShoppingBanner2Path.wx_URL];
+    [self.navigationController pushViewController:wc animated:YES];
+}
+
 @end

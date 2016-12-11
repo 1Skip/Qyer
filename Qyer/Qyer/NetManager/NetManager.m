@@ -60,4 +60,13 @@
     }];
 }
 
+// 获取社区主界面的数据
++(id)getCommunityWithPage:(NSInteger)pages completionHandler:(void (^)(CommunityModel *, NSError *))completionHandler
+{
+    NSString *path = [NSString stringWithFormat:kCommunityPath, (long)pages];
+    return [self GET:path paramaters:nil completionHandler:^(id responseObj, NSError *error) {
+        !completionHandler ?: completionHandler([CommunityModel parse:responseObj], error);
+    }];
+}
+
 @end
