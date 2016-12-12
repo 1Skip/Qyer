@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface shoppingWebPageController : UIViewController
+// 定义网址变量
 -initWithURL:(NSURL *) url;
 @property(nonatomic) NSURL *url;
 @end

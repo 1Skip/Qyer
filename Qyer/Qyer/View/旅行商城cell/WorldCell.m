@@ -27,7 +27,7 @@
         _cityView = [UIView new];
         [self.contentView addSubview:_cityView];
         [_cityView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(0);
+            make.edges.equalTo(0.f);
             make.width.equalTo([UIScreen mainScreen].bounds.size.width);
         }];
         _cityView.backgroundColor = [UIColor whiteColor];
@@ -43,13 +43,13 @@
         [self.cityView addSubview:_cityTitle];
         [_cityTitle mas_makeConstraints:^(MASConstraintMaker *make)
          {
-             make.top.equalTo(kHight * (36.f / 1132.f));
+             make.top.equalTo(kHight * (25.f / 1132.f));
              make.left.right.equalTo(0);
              make.height.equalTo(kHight * (38.f / 1132.f));
              make.width.equalTo(kWidth);
          }];
         _cityTitle.textAlignment = NSTextAlignmentCenter;
-        _cityTitle.font = [UIFont systemFontOfSize:20.f];
+        _cityTitle.font = [UIFont boldSystemFontOfSize:18.f];
     }
     return _cityTitle;
 }
@@ -67,8 +67,8 @@
             [self.cityView addSubview:btn];
             [btn mas_makeConstraints:^(MASConstraintMaker *make) {
                 // make.top.equalTo(self.cityTitle.mas_bottom).offset(20);
-                make.width.equalTo(kWidth * (132.f / 639.f));
-                make.height.equalTo(kHight * (102.f / 1132.f));
+                make.width.equalTo(kWidth * (180.f / 639.f));
+                make.height.equalTo((140.f / 710.f) * (kHight * (718.f / 1132.f)));
                 make.top.equalTo((86.f / 710.f) * (kHight * (718.f / 1132.f)));
                 
                 if (i == 0)
@@ -77,7 +77,7 @@
                 }
                 else
                 {
-                    make.left.equalTo(lastView.mas_right).equalTo(kWidth * (30.f / 639.f));
+                    make.left.equalTo(lastView.mas_right).equalTo(kWidth * (15.f / 639.f));
                     make.width.equalTo(lastView);
                     if (i == 3)
                     {
@@ -86,11 +86,12 @@
                 }
                 
             }];
-            btn.layer.cornerRadius = 0.5;
+            //btn.layer.cornerRadius = 0.5;
+            btn.layer.cornerRadius = 5.f;
             btn.clipsToBounds = YES;
             
-            lastView.layer.cornerRadius = 0.5;
-            lastView.clipsToBounds = YES;
+            //lastView.layer.cornerRadius = 0.5;
+            //lastView.clipsToBounds = YES;
             // 设置毛玻璃
             UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
             UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
@@ -122,25 +123,14 @@
             UILabel *name = [UILabel new];
             [self.cityView addSubview:name];
             [name mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(self.cityTitle.mas_bottom).offset((45.f / 710.f) * (kHight * (718.f / 1132.f)));
-                //make.center.equalTo(self.cityBtn);
-                if (i == 0)
-                {
-                    make.left.equalTo(kWidth * (20.f / 639.f));
-                }
-                else
-                {
-                    make.left.equalTo(lastView.mas_right).equalTo(kWidth * (10.f / 639.f));
-                    make.width.equalTo(lastView);
-                    if (i == 3)
-                    {
-                        make.right.equalTo(-kWidth * (20.f / 639.f));
-                    }
-                }
+                
+                make.width.height.equalTo(self.cityBtn[i]);
+                make.center.equalTo(self.cityBtn[i]);
 
             }];
             name.textColor = [UIColor whiteColor];
             name.textAlignment = NSTextAlignmentCenter;
+            name.font = [UIFont boldSystemFontOfSize:16.f];
             lastView = name;
             [tmpArr addObject:name];
         }
@@ -160,13 +150,13 @@
         [_cityDetail01Btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(kWidth * (30.f / 639.f));
             make.top.equalTo(self.cityBtn.lastObject.mas_bottom).offset((20.f / 718.f) * (kHight * (718.f / 1132.f)));
-            make.right.equalTo(-(kWidth * (20.f / 639.f)));
+            make.right.equalTo(-(kWidth * (30.f / 639.f)));
             make.width.equalTo(kWidth * (582.f / 639.f));
-            make.height.equalTo(kHight * (160.f / 1132.f));
+            make.height.equalTo(kHight * (170.f / 1132.f));
         }];
         _cityDetail01Btn.layer.borderWidth = 1;
         _cityDetail01Btn.layer.borderColor = self.buttonBorderColor.CGColor;
-        _cityDetail01Btn.layer.cornerRadius = 3.0;
+        _cityDetail01Btn.layer.cornerRadius = 5.f;
         _cityDetail01Btn.clipsToBounds = YES;
         
     }
@@ -187,7 +177,7 @@
         }];
         _cityDetail02Btn.layer.borderWidth = 1;
         _cityDetail02Btn.layer.borderColor = self.buttonBorderColor.CGColor;
-        _cityDetail02Btn.layer.cornerRadius = 3.0;
+        _cityDetail02Btn.layer.cornerRadius = 5.f;
         _cityDetail02Btn.clipsToBounds = YES;
     }
     
@@ -203,7 +193,7 @@
         [_cityPic1 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.top.bottom.equalTo(0);
             make.width.equalTo(self.cityBtn.lastObject);
-            make.height.lessThanOrEqualTo(self.cityBtn.lastObject.mas_height).offset(30.f);
+            make.height.lessThanOrEqualTo(self.cityDetail01Btn);
         }];
     }
     
@@ -233,12 +223,12 @@
         _title1LB = [UILabel new];
         [self.cityDetail01Btn addSubview:_title1LB];
         [_title1LB mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.cityPic1.mas_right).offset(10);
-            make.top.equalTo(3);
-            make.right.equalTo(-10);
+            make.left.equalTo(self.cityPic1.mas_right).offset(kWidth * (20.f / 639.f));
+            make.top.equalTo((20.f / 718.f) * (kHight * (718.f / 1132.f)));
+            make.right.equalTo(-(kWidth * (20.f / 639.f)));
         }];
         _title1LB.numberOfLines = 2;
-        _title1LB.font = [UIFont systemFontOfSize:15.0];
+        _title1LB.font = [UIFont systemFontOfSize:13.f];
     }
     
     return _title1LB;
@@ -251,12 +241,12 @@
         _title2LB = [UILabel new];
         [self.cityDetail02Btn addSubview:_title2LB];
         [_title2LB mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.cityPic2.mas_right).offset(10);
-            make.top.equalTo(3);
-            make.right.equalTo(-10);
+            make.left.equalTo(self.cityPic2.mas_right).offset(kWidth * (20.f / 639.f));
+            make.top.equalTo((20.f / 718.f) * (kHight * (718.f / 1132.f)));
+            make.right.equalTo(-(kWidth * (20.f / 639.f)));
         }];
         _title2LB.numberOfLines = 2;
-        _title2LB.font = [UIFont systemFontOfSize:15.0];
+        _title2LB.font = [UIFont systemFontOfSize:13.f];
     }
     
     return _title2LB;
@@ -270,9 +260,9 @@
         [self.cityDetail01Btn addSubview:_sold1LB];
         [_sold1LB mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.title1LB);
-            make.bottom.equalTo(-3);
+            make.bottom.equalTo(-(10.f / 718.f) * (kHight * (718.f / 1132.f)));
         }];
-        _sold1LB.font = [UIFont systemFontOfSize:13.0];
+        _sold1LB.font = [UIFont systemFontOfSize:13.f];
         _sold1LB.textColor = [UIColor lightGrayColor];
     }
     
@@ -287,7 +277,7 @@
         [self.cityDetail02Btn addSubview:_sold2LB];
         [_sold2LB mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.title2LB);
-            make.bottom.equalTo(-3);
+            make.bottom.equalTo(-(10.f / 718.f) * (kHight * (718.f / 1132.f)));
         }];
         _sold2LB.font = [UIFont systemFontOfSize:13.0];
         _sold2LB.textColor = [UIColor lightGrayColor];
@@ -303,10 +293,11 @@
         _price1LB = [UILabel new];
         [self.cityDetail01Btn addSubview:_price1LB];
         [_price1LB mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(-10);
-            make.bottom.equalTo(-3);
+            make.right.equalTo(-(kWidth * (20.f / 639.f)));
+            make.bottom.equalTo(-(12.f / 718.f) * (kHight * (718.f / 1132.f)));
         }];
-        _price1LB.font = [UIFont systemFontOfSize:16.0];
+        _price1LB.font = [UIFont systemFontOfSize:13.f];
+        _price1LB.textAlignment = NSTextAlignmentRight;
         _price1LB.textColor = [UIColor redColor];
     }
     
@@ -320,10 +311,11 @@
         _price2LB = [UILabel new];
         [self.cityDetail02Btn addSubview:_price2LB];
         [_price2LB mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(-10);
-            make.bottom.equalTo(-3);
+            make.right.equalTo(-(kWidth * (20.f / 639.f)));
+            make.bottom.equalTo(-(12.f / 718.f) * (kHight * (718.f / 1132.f)));
         }];
-        _price2LB.font = [UIFont systemFontOfSize:16.0];
+        _price2LB.font = [UIFont systemFontOfSize:13.f];
+        _price2LB.textAlignment = NSTextAlignmentRight;
         _price2LB.textColor = [UIColor redColor];
     }
     

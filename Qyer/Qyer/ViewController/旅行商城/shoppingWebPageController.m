@@ -9,6 +9,7 @@
 #import "shoppingWebPageController.h"
 
 @interface shoppingWebPageController () <UIWebViewDelegate>
+// 定义网页控制器
 @property(nonatomic) UIWebView *webView;
 @end
 

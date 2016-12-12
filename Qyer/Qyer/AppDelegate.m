@@ -21,10 +21,28 @@
     _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [_window makeKeyAndVisible];
     _window.rootViewController = [AllViewController new];
-    return YES;   
+    
+    [NetManager getShoppingCompletionHandler:^(ShoppingModel *model, NSError *error) {
+        NSLog(@"");
+    }];
+    
+    [NetManager getRecommendContentModel:1 ompletionHandler:^(RecommendViewModel *model, NSError *error) {
+        NSLog(@"");
+    }];
+    
+    [NetManager getCommunityWithPage:2 completionHandler:^(CommunityModel *model, NSError *error) {
+        NSLog(@"");
+    }];
+
+    return YES;
 }
 
 
+// 调用只支持竖屏的方法
+-(UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
