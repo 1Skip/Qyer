@@ -18,7 +18,5 @@
 
 @property(nonatomic)   UIImageView* image2;
 
-//-(UIImageView *)image;
-//-(UIImageView *)image2;
 
 @end

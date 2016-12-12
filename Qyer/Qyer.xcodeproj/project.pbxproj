@@ -23,6 +23,9 @@
 		5500403C1DE9681F00BC3DFF /* WorldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9386D5961DE5A0D500A6ADF8 /* WorldCell.m */; };
 		5500403D1DE9681F00BC3DFF /* DiscountTopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86344B5D1DE87EED00C1842B /* DiscountTopicCell.m */; };
 		5500403E1DE9681F00BC3DFF /* HotGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86344B601DE87F0200C1842B /* HotGoodsCell.m */; };
+		5503BD811DFA70D0006AB2BE /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5503BD7F1DFA70D0006AB2BE /* MapVC.m */; };
+		5503BD821DFA70D0006AB2BE /* MapVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5503BD801DFA70D0006AB2BE /* MapVC.xib */; };
+		5503BD841DFA736D006AB2BE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5503BD831DFA736D006AB2BE /* MapKit.framework */; };
 		550463C91DE4A848000AA3F7 /* CityVSCountryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 550463C81DE4A848000AA3F7 /* CityVSCountryModel.m */; };
 		550463CE1DE4AA04000AA3F7 /* BournCityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 550463CD1DE4AA04000AA3F7 /* BournCityVC.m */; };
 		550463D31DE4AE63000AA3F7 /* CityheadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 550463D21DE4AE63000AA3F7 /* CityheadCell.m */; };
@@ -63,6 +66,10 @@
 		5500402C1DE967CE00BC3DFF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5500402D1DE967CE00BC3DFF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		550040321DE967E800BC3DFF /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
+		5503BD7E1DFA70D0006AB2BE /* MapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapVC.h; sourceTree = "<group>"; };
+		5503BD7F1DFA70D0006AB2BE /* MapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapVC.m; sourceTree = "<group>"; };
+		5503BD801DFA70D0006AB2BE /* MapVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapVC.xib; sourceTree = "<group>"; };
+		5503BD831DFA736D006AB2BE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		550463C71DE4A848000AA3F7 /* CityVSCountryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityVSCountryModel.h; sourceTree = "<group>"; };
 		550463C81DE4A848000AA3F7 /* CityVSCountryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityVSCountryModel.m; sourceTree = "<group>"; };
 		550463CC1DE4AA04000AA3F7 /* BournCityVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BournCityVC.h; sourceTree = "<group>"; };
@@ -164,6 +171,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5503BD841DFA736D006AB2BE /* MapKit.framework in Frameworks */,
 				2696AB9198967D29662C3CCF /* libPods-Qyer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,6 +229,9 @@
 			children = (
 				550463CC1DE4AA04000AA3F7 /* BournCityVC.h */,
 				550463CD1DE4AA04000AA3F7 /* BournCityVC.m */,
+				5503BD7E1DFA70D0006AB2BE /* MapVC.h */,
+				5503BD7F1DFA70D0006AB2BE /* MapVC.m */,
+				5503BD801DFA70D0006AB2BE /* MapVC.xib */,
 			);
 			name = "目的地国家与城市";
 			sourceTree = "<group>";
@@ -402,6 +413,7 @@
 		9023DBB756C4AEBBE1B4701A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5503BD831DFA736D006AB2BE /* MapKit.framework */,
 				B9CE096C68FF0D6FCB7D0228 /* libPods-Qyer.a */,
 			);
 			name = Frameworks;
@@ -625,7 +637,7 @@
 				TargetAttributes = {
 					854C208F1DDC5B4B00F5D5F4 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = TA7BM9W35D;
+						DevelopmentTeam = ZCM7EVA4S9;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -656,6 +668,7 @@
 				550040301DE967CE00BC3DFF /* Main.storyboard in Resources */,
 				5500402F1DE967CE00BC3DFF /* LaunchScreen.storyboard in Resources */,
 				554C20E11DEA9D3700A8271E /* Headerview.xib in Resources */,
+				5503BD821DFA70D0006AB2BE /* MapVC.xib in Resources */,
 				5500402E1DE967CE00BC3DFF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -754,6 +767,7 @@
 				55FC55C21DE8BD7C005B66FF /* ThreeCell.m in Sources */,
 				5508C8B41DE14A8F00594AB5 /* bournzonCell.m in Sources */,
 				550463D31DE4AE63000AA3F7 /* CityheadCell.m in Sources */,
+				5503BD811DFA70D0006AB2BE /* MapVC.m in Sources */,
 				F4ADDC831DDEFE4400C13254 /* MineViewController.m in Sources */,
 				854C209B1DDC5B4B00F5D5F4 /* ViewController.m in Sources */,
 				854C20981DDC5B4B00F5D5F4 /* AppDelegate.m in Sources */,
@@ -858,12 +872,12 @@
 			baseConfigurationReference = B2B8C73DF8CFEFD16DD67BCE /* Pods-Qyer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = TA7BM9W35D;
+				DEVELOPMENT_TEAM = ZCM7EVA4S9;
 				GCC_PREFIX_HEADER = "$(PRODUCT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = Qyer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = DKD.Qyer1323;
+				PRODUCT_BUNDLE_IDENTIFIER = DKD121212.Qyer1323;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -874,12 +888,12 @@
 			baseConfigurationReference = A04F497D9480ACCC7D65A036 /* Pods-Qyer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = TA7BM9W35D;
+				DEVELOPMENT_TEAM = ZCM7EVA4S9;
 				GCC_PREFIX_HEADER = "$(PRODUCT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = Qyer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = DKD.Qyer1323;
+				PRODUCT_BUNDLE_IDENTIFIER = DKD121212.Qyer1323;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

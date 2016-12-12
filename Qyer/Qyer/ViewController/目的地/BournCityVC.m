@@ -12,9 +12,11 @@
 #import "ThreeHeaddownCell.h"
 #import "ThreeCell.h"
 #import "HeadCell.h"
+#import "MapVC.h"
 //屏幕宽
 #define WIDTH  [UIScreen mainScreen].bounds.size.width
 #define HEIGHT [UIScreen mainScreen].bounds.size.height
+
 @interface BournCityVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,iCarouselDelegate,iCarouselDataSource>
 
 
@@ -283,7 +285,10 @@
             cell.cnname.text = Model.cnname;
             //  使用字符串将天气 拼接
             NSString* str = [NSString stringWithFormat:@"%@    %@~%@",Model.weather.info,Model.weather.low_temp,Model.weather.high_temp];
-            cell.info.text = str;
+            //天气存在的时候在赋值
+            if (Model.weather.info.length > 0) {
+                cell.info.text = str;
+            }
             [cell tour];
             //启动定时器让iC无限滚动  为防止复用时重新启动定时器..
             static int num = 0;
@@ -487,5 +492,18 @@
         return CGSizeMake((WIDTH) * 180 / 640, (HEIGHT) * 320 / 1135);
     }
     return CGSizeMake(0, 0);
+}
+//点击Cell相应事件
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CiCodataModel* Model = self.datalist.data;
+    NSString* MapName = [Model.cnname stringByAppendingString:@"地图"];
+    if (indexPath.section == 1 && indexPath.row == 0) {
+        MapVC* vc = [MapVC new];
+        vc.title = MapName;
+        self.tabBarController.hidesBottomBarWhenPushed = NO;
+        [self.navigationController pushViewController:vc animated:YES];
+        self.tabBarController.hidesBottomBarWhenPushed = YES;
+    }
 }
 @end

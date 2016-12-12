@@ -119,4 +119,11 @@
     return view;
     
 }
++(void)initFramaWithBtn:(UIButton *)btn
+{
+    // 按钮图片和标题总高度
+    CGFloat totalHeight = (btn.imageView.frame.size.height + btn.titleLabel.frame.size.height);
+    [btn setImageEdgeInsets:UIEdgeInsetsMake(-(totalHeight - btn.imageView.frame.size.height), 0.0, 0.0,btn.titleLabel.frame.size.width)];
+    [btn setTitleEdgeInsets:UIEdgeInsetsMake(0.0, -btn.imageView.frame.size.height - 25, -(totalHeight - btn.titleLabel.frame.size.height ), 0.0)];
+}
 @end

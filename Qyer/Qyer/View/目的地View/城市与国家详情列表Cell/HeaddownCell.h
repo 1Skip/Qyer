@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface HeaddownCell : UICollectionReusableView
-//@property(nonatomic ) iCarousel* icvc;
+
 
 @property(nonatomic ) UIButton*  goback;
 

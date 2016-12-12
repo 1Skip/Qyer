@@ -56,9 +56,10 @@
         [_tour setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_tour setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
         [_tour mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(-30);
-            make.bottom.equalTo(-30);
+            make.right.equalTo(-10);
+            make.bottom.equalTo(-35);
         }];
+        [ZXFactory initFramaWithBtn:_tour];
     }
     return _tour;
 }
